@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hospitalised injuries from road crashes</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="shell">
+
+    <!-- ===== Main content ===== -->
+    <div class="content">
+
+      <header class="header">
+        <h1 class="header-title">Hospitalised injuries from road crashes
+          <span class="info-icon" title="Hospitalised injuries due to road crashes,&#10;these data were produced by the Road Safety Data Hub using&#10;data source from the Australian Institude of Health and Welfare.">i</span>
+        </h1>
+        <p class="header-year" id="header-year"></p>
+      </header>
+
+      <!-- KPI row -->
+      <section class="kpis">
+        <div class="kpi kpi-national">
+          <p class="kpi-label">Hospitalised injuries, 2021</p>
+          <p class="kpi-value" id="kpi-national"></p>
+        </div>
+        <div class="kpi kpi-firstnations">
+          <p class="kpi-label">First Nations hospitalised injuries, 2021</p>
+          <p class="kpi-value" id="kpi-firstnations"></p>
+        </div>
+      </section>
+
+      <!-- Chart grid -->
+      <main class="grid">
+        <section class="card card-national">
+          <h2 class="card-title">Hospitalised injuries, 2011–2021
+            <span class="info-icon small" title="Info">i</span></h2>
+          <div id="chart-national" class="chart"></div>
+        </section>
+
+        <section class="card card-firstnations">
+          <h2 class="card-title">First Nations hospitalised injuries, 2011–2021
+            <span class="info-icon small" title="Info">i</span></h2>
+          <div id="chart-firstnations" class="chart"></div>
+        </section>
+
+        <section class="card card-group">
+          <h2 class="card-title">Change by selected group, 2011–2021
+            <span class="info-icon small" title="Info">i</span></h2>
+          <div id="chart-group" class="chart"></div>
+        </section>
+
+        <section class="card card-state">
+          <h2 class="card-title">By state and territory, 2021
+            <span class="info-icon small" title="Info">i</span></h2>
+          <div id="chart-state" class="chart"></div>
+        </section>
+      </main>
+
+    </div>
+  </div>
+</body>
+</html>
