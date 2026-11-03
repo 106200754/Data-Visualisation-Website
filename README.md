@@ -1,5 +1,5 @@
 # Data-Visualisation-Website
-This repo is for Group 7's Data Visualisation Website source code
+This repo is for Group 18's Data Visualisation Website source code
 
 Beyond Road Deaths
 
