@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>About | Beyond Road Deaths</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/theme.js"></script>
+</head>
+<body id="top">
+
+  <header class="site-nav">
+    <div class="nav-left">
+      <a class="brand" href="index.html"><span class="dots" aria-hidden="true"><i></i><i></i></span>Group 18</a>
+      <span class="nav-badge">2011–21</span>
+    </div>
+    <div class="right">
+      <a class="link active" href="about.html">About</a>
+      <a class="link" href="index.html">Dashboard</a>
+      <label class="select-pill">Theme:
+        <select id="theme-select" class="theme-select" aria-label="Theme">
+          <option value="light">Light</option>
+          <option value="dark">Dark</option>
+        </select>
+      </label>
+    </div>
+  </header>
+
+  <main class="page">
+    <section class="welcome">
+      <p class="welcome-meta"><span class="pill">Welcome</span><span>Group 18 · 2011–2021</span></p>
+      <h1>The road-crash injuries behind the headlines</h1>
+      <p class="welcome-sub">Follow how hospitalisations from road crashes changed between 2011 and 2021, who was affected most, and how the counts differ across states and territories.</p>
+    </section>
+
+    <div class="about-grid">
+    <section class="about-card">
+      <p class="eyebrow">About this dashboard</p>
+      <h2 class="card-heading">Who is carrying the rise in road-crash hospitalisations?</h2>
+      <p class="lead">Road-crash deaths get most of the attention, but far more people are admitted to hospital with injuries. This dashboard follows hospitalised road-crash injuries in Australia from 2011 to 2021, and looks at what changed for First Nations peoples and for selected road-user and age groups.</p>
+
+      <hr class="divider">
+
+      <h2 class="how-title">How to explore the story</h2>
+      <ol class="step-list">
+        <li class="step-row" tabindex="0">
+          <span class="badge">01</span>
+          <div><strong>Start with the national picture</strong>
+          <p>Hospitalisations rose from 34,033 in 2011 to 39,505 in 2021 (+16%), with a dip in 2020.</p></div>
+        </li>
+        <li class="step-row" tabindex="0">
+          <span class="badge">02</span>
+          <div><strong>See who changed the most</strong>
+          <p>First Nations hospitalisations rose by about 90%. Among the selected groups, cyclists and people aged 65–74 rose fastest.</p></div>
+        </li>
+        <li class="step-row" tabindex="0">
+          <span class="badge">03</span>
+          <div><strong>Check the states, then the limits</strong>
+          <p>Victoria, Queensland and NSW have the highest 2021 counts, but these are raw counts, not rates adjusted for population.</p></div>
+        </li>
+      </ol>
+    </section>
+
+    <section class="about-card">
+      <p class="eyebrow">Choose a storyline</p>
+      <h2 class="story-title">Explore the analysis</h2>
+      <div class="story-list">
+        <a class="story-link" href="index.html#national">
+          <span class="badge">01</span>
+          <div><strong>National trend</strong><p>Total hospitalisations, 2011–2021</p></div>
+          <span class="arrow" aria-hidden="true">↗</span>
+        </a>
+        <a class="story-link" href="index.html#first-nations">
+          <span class="badge">02</span>
+          <div><strong>First Nations</strong><p>How the yearly count changed</p></div>
+          <span class="arrow" aria-hidden="true">↗</span>
+        </a>
+        <a class="story-link" href="index.html#group">
+          <span class="badge">03</span>
+          <div><strong>Road users &amp; age</strong><p>Which selected groups rose most</p></div>
+          <span class="arrow" aria-hidden="true">↗</span>
+        </a>
+        <a class="story-link" href="index.html#state">
+          <span class="badge">04</span>
+          <div><strong>State patterns</strong><p>Counts by state and territory, 2021</p></div>
+          <span class="arrow" aria-hidden="true">↗</span>
+        </a>
+      </div>
+      <a class="data-btn" href="#data"><span>Understand the data behind the dashboard</span><span aria-hidden="true">→</span></a>
+    </section>
+    </div>
+    <section class="data-sources">
+    <p class="data-eyebrow">DATA SOURCES</p>
+
+    <h2>Explore Our Datasets</h2>
+
+    <p class="data-description">
+        Download the CSV files used to create our
+        Australian road safety visualisations.
+    </p>
+
+    <div class="dataset-grid">
+
+        <a class="dataset-card"
+           href="data/national_hospitalisations_2011_2021.csv"
+           download>
+            <span class="dataset-tag">NATIONAL</span>
+            <h3>National Hospitalisations</h3>
+            <p>Annual hospitalisations in Australia from 2011 to 2021.</p>
+            <span class="download-label">↓ Download CSV</span>
+        </a>
+
+        <a class="dataset-card"
+           href="data/first_nations_yearly_2011_2021.csv"
+           download>
+            <span class="dataset-tag">FIRST NATIONS</span>
+            <h3>First Nations Hospitalisations</h3>
+            <p>Annual hospitalisations involving First Nations people.</p>
+            <span class="download-label">↓ Download CSV</span>
+        </a>
+
+        <a class="dataset-card"
+           href="data/selected_group_percentage_change_2011_2021.csv"
+           download>
+            <span class="dataset-tag">GROUPS</span>
+            <h3>Percentage Changes</h3>
+            <p>Percentage changes for selected road injury groups.</p>
+            <span class="download-label">↓ Download CSV</span>
+        </a>
+
+        <a class="dataset-card"
+           href="data/state_territory_hospitalisations_2021.csv"
+           download>
+            <span class="dataset-tag">STATES</span>
+            <h3>State and Territory Data</h3>
+            <p>Hospitalisations by Australian state and territory in 2021.</p>
+            <span class="download-label">↓ Download CSV</span>
+        </a>
+
+    </div>
+</section>
+
+    <section id="data" class="data-panel">
+      <p class="data-eyebrow"><span class="pill">Data</span><span>Sources, measures &amp; limits</span></p>
+      <h2 class="data-title">About the data</h2>
+      <p class="data-sub">What the figures on this dashboard come from, what they cover, and how far they can be pushed.</p>
+
+      <div class="info-grid">
+        <article class="info-card">
+          <span class="num">01</span>
+          <h3>Source</h3>
+          <p>BITRE Hospitalised Injury Data for road crashes, built from the AIHW National Hospital Morbidity Database. Our charts use annual tables we prepared from the BITRE files in KNIME.</p>
+        </article>
+        <article class="info-card">
+          <span class="num">02</span>
+          <h3>Coverage</h3>
+          <p>Hospital admissions for road-crash injuries from 2011 to 2021: national and First Nations yearly totals, the change in selected road-user and age groups, and state and territory counts for 2021.</p>
+        </article>
+        <article class="info-card">
+          <span class="num">03</span>
+          <h3>Measure</h3>
+          <p>Each figure is a count of hospitalisations, meaning admissions, not people. One person admitted twice in a year can appear twice. The group chart shows percentage change from 2011 to 2021.</p>
+        </article>
+      </div>
+
+      <div class="read-panel">
+        <div>
+          <h3>How to read the figures</h3>
+          <p>These are recorded counts, not rates. They are not adjusted for population size or how much people travel, so a larger count does not mean a higher risk. Read the charts as a record of what was admitted to hospital, not as a ranking of safety.</p>
+        </div>
+        <div class="suppressed">
+          <span class="hatch" aria-hidden="true"></span>
+          <p><strong>Suppressed values:</strong> “n.p.” means not published. Small numbers are withheld for confidentiality or quality reasons. It is not the same as zero.</p>
+        </div>
+      </div>
+
+      <div class="qa">
+        <p class="qa-eyebrow">Questions &amp; answers</p>
+        <h3 class="qa-title">Understanding the data</h3>
+        <details>
+          <summary>What does a hospitalisation mean here?</summary>
+          <p>An admission to hospital with an injury from a road crash. Minor injuries treated without admission are not included, and neither are deaths at the scene.</p>
+        </details>
+        <details>
+          <summary>Can every year be compared directly?</summary>
+          <p>Mostly, but with care. Reporting practices can change over time, and 2020 shows a dip that we do not attribute to any single cause. Check the BITRE data dictionary for notes on individual jurisdictions before drawing firm conclusions.</p>
+        </details>
+        <details>
+          <summary>Why do the totals differ between charts?</summary>
+          <p>Some records have an unknown category (for example First Nations status or state) and some cells are suppressed, so tables can add up slightly differently. For example, the 2021 state counts add up to 39,035, while the national total for 2021 is 39,505.</p>
+        </details>
+        <details>
+          <summary>What can counts tell us about risk?</summary>
+          <p>Very little on their own. First Nations peoples are a much smaller share of the population than non-Indigenous Australians, and states differ greatly in size, so comparing raw counts can mislead. A fair comparison needs rates per head of population, which this dashboard does not calculate.</p>
+        </details>
+        <details>
+          <summary>References and reuse</summary>
+          <p>BITRE, Hospitalised injury (bitre.gov.au/publications/ongoing/hospitalised-injury). Data provided by the Australian Institute of Health and Welfare. Check the BITRE terms before reusing the data. TODO: add your full reference list.</p>
+        </details>
+      </div>
+
+      <div class="data-actions">
+        <a class="pill-btn" href="index.html">Return to dashboard</a>
+        <a class="pill-btn" href="#top">About this dashboard</a>
+      </div>
+    </section>
+
+    <h2>Project team</h2>
+    <div class="team">
+      <div class="member"><h3>TODO: Name</h3><div class="role">Role</div><p>TODO: responsibilities</p></div>
+      <div class="member"><h3>TODO: Name</h3><div class="role">Role</div><p>TODO: responsibilities</p></div>
+      <div class="member"><h3>TODO: Name</h3><div class="role">Role</div><p>TODO: responsibilities</p></div>
+    </div>
+
+  </main>
+
+  <footer class="site-footer">
+    COS30045 Data Visualisation · Group 18 · Swinburne University of Technology
+  </footer>
+  <script>
+    // Select a "How to explore" step: it gets an outline until another one is chosen
+    const steps = document.querySelectorAll(".step-row");
+    function select(row) {
+      steps.forEach(r => r.classList.toggle("selected", r === row));
+    }
+    steps.forEach(row => {
+      row.addEventListener("click", () => select(row));
+      row.addEventListener("keydown", e => {
+        if (e.key === "Enter" || e.key === " ") { e.preventDefault(); select(row); }
+      });
+    });
+  </script>
+</body>
+</html>
