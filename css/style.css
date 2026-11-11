@@ -1,139 +1,274 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="A single-screen dashboard about hospitalised road-crash injuries in Australia from 2011 to 2021.">
-  <title>Beyond Road Deaths | Group 18</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-  <!--
-    GenAI acknowledgement:
-    Generative AI was used to review the single-screen dashboard structure,
-    accessibility and responsive CSS. Group 18 reviewed and adapted the
-    suggestions and remains responsible for the final design and code.
-  -->
+/*
+  Group 18 single-screen dashboard design system.
+  GenAI was used to review layout structure, accessibility and responsive CSS.
+  The team reviewed and adapted all suggestions used in the submitted code.
+*/
 
-  <header class="dashboard-header">
-    <a class="brand" href="#" aria-label="Beyond Road Deaths dashboard">
-      <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
-      <span>
-        <strong>Beyond Road Deaths</strong>
-        <small>Hospitalised road-crash injuries</small>
-      </span>
-    </a>
+:root {
+  --pine-950: #091f1c;
+  --pine-900: #11342f;
+  --pine-800: #1c4c44;
+  --sage-100: #dfeae6;
+  --sage-50: #eff5f2;
+  --panel: #fbfdfc;
+  --ink: #102d28;
+  --muted: #607870;
+  --rule: #cfddd8;
+  --coral: #ff6a55;
+  --mint: #72d5b1;
+  --sky: #84b5e9;
+  --white: #fff;
+  --font-display: "Bricolage Grotesque", system-ui, sans-serif;
+  --font-body: "Instrument Sans", system-ui, sans-serif;
+}
 
-    <div class="header-title">
-      <span>Australia</span>
-      <h1>The injuries behind the road toll</h1>
-    </div>
+* { box-sizing: border-box; }
+html, body { width: 100%; height: 100%; overflow: hidden; }
+body {
+  margin: 0;
+  color: var(--ink);
+  background: var(--sage-50);
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.35;
+}
 
-    <div class="header-meta">
-      <span class="year-range">2011—2021</span>
-      <span class="group-label">Group 18 · COS30045</span>
-    </div>
-  </header>
+:focus-visible { outline: 3px solid var(--coral); outline-offset: 3px; }
 
-  <main class="dashboard" aria-label="Hospitalised road-crash injuries dashboard">
-    <section class="summary-strip" aria-label="Dashboard overview">
-      <div class="story-summary">
-        <p class="eyebrow" id="story-title">Story 1 of 4 · National rise</p>
-        <p id="story-message" aria-live="polite">Hospitalisations increased overall from 2011 to 2021, despite a temporary decline in 2020.</p>
-        <div class="story-controls" role="group" aria-label="Choose a data story">
-          <button class="story-button is-active" type="button" data-story="rise">1 Rise</button>
-          <button class="story-button" type="button" data-story="interruption">2 2020</button>
-          <button class="story-button" type="button" data-story="first-nations">3 First Nations</button>
-          <button class="story-button" type="button" data-story="groups">4 Groups</button>
-          <button class="story-reset" type="button" id="reset-dashboard">Reset</button>
-        </div>
-      </div>
+.dashboard-header {
+  height: 76px;
+  display: grid;
+  grid-template-columns: minmax(260px, 1fr) minmax(390px, 1.45fr) minmax(240px, 1fr);
+  align-items: center;
+  gap: 24px;
+  padding: 0 22px;
+  color: var(--white);
+  background: var(--pine-950);
+  border-bottom: 4px solid var(--mint);
+}
 
-      <div class="kpi kpi-mint">
-        <span id="kpi-national-label">Hospitalisations · 2021</span>
-        <strong id="kpi-national-value">39,505</strong>
-      </div>
-      <div class="kpi kpi-coral">
-        <span id="kpi-change-label">National change · 2011–21</span>
-        <strong id="kpi-change-value">+16.1%</strong>
-      </div>
-      <div class="kpi kpi-blue">
-        <span id="kpi-first-label">First Nations · 2021</span>
-        <strong id="kpi-first-value">2,220</strong>
-      </div>
-    </section>
+.brand { display: flex; align-items: center; gap: 11px; color: inherit; text-decoration: none; }
+.brand strong { display: block; font: 700 17px/1.05 var(--font-display); }
+.brand small { display: block; margin-top: 3px; color: #a9c4bc; font-size: 10px; letter-spacing: .05em; text-transform: uppercase; }
+.brand-mark { position: relative; display: block; width: 38px; height: 30px; flex: none; }
+.brand-mark::before, .brand-mark::after {
+  content: "";
+  position: absolute;
+  left: 1px;
+  right: 1px;
+  height: 2px;
+  background: var(--mint);
+  transform: rotate(-12deg);
+  transform-origin: left center;
+}
+.brand-mark::before { top: 8px; }
+.brand-mark::after { top: 22px; }
+.brand-mark i { position: absolute; z-index: 1; width: 8px; height: 8px; border-radius: 50%; background: var(--coral); }
+.brand-mark i:nth-child(1) { left: 1px; top: 19px; }
+.brand-mark i:nth-child(2) { left: 16px; top: 11px; background: var(--mint); }
+.brand-mark i:nth-child(3) { right: 1px; top: 3px; background: var(--sky); }
 
-    <section class="chart-grid" aria-label="Four views of the data">
-      <article class="chart-card" id="national">
-        <header class="chart-header">
-          <div>
-            <span class="chart-number">01</span>
-            <div><h2>National trend</h2><p>Annual hospitalisations</p></div>
-          </div>
-          <span class="chart-period">2011–2021</span>
-        </header>
-        <div id="chart-national" class="chart-placeholder" role="img" aria-label="Interactive national hospitalisation trend line chart with a draggable year brush">
-          <span class="placeholder-icon" aria-hidden="true">↗</span>
-          <strong>D3 line chart</strong>
-          <small>National hospitalisations over time</small>
-        </div>
-        <p class="chart-insight"><b>Insight</b> Overall hospitalisations rose, with a visible interruption in 2020.</p>
-      </article>
+.header-title { min-width: 0; text-align: center; }
+.header-title span { color: var(--mint); font-size: 10px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; }
+.header-title h1 { margin: 2px 0 0; font: 700 clamp(21px, 2.2vw, 31px)/1 var(--font-display); letter-spacing: -.025em; white-space: nowrap; }
+.header-meta { justify-self: end; text-align: right; }
+.year-range { display: block; color: var(--coral); font: 800 21px/1 var(--font-display); letter-spacing: -.03em; }
+.group-label { display: block; margin-top: 4px; color: #a9c4bc; font-size: 10px; letter-spacing: .05em; text-transform: uppercase; }
 
-      <article class="chart-card" id="first-nations">
-        <header class="chart-header">
-          <div>
-            <span class="chart-number">02</span>
-            <div><h2>Whose burden grew faster?</h2><p>Growth index · 2011 = 100</p></div>
-          </div>
-          <span class="chart-period">2011–2021</span>
-        </header>
-        <div id="chart-firstnations" class="chart-placeholder" role="img" aria-label="Indexed comparison of national and First Nations hospitalisations">
-          <span class="placeholder-icon" aria-hidden="true">⌁</span>
-          <strong>D3 indexed comparison</strong>
-          <small>National and First Nations growth</small>
-        </div>
-        <p class="chart-insight"><b>Insight</b> First Nations counts grew much faster than the national total.</p>
-      </article>
+.dashboard {
+  height: calc(100vh - 76px);
+  display: grid;
+  grid-template-rows: 86px minmax(0, 1fr);
+  gap: 10px;
+  padding: 10px 12px 12px;
+}
 
-      <article class="chart-card" id="groups">
-        <header class="chart-header">
-          <div>
-            <span class="chart-number">03</span>
-            <div><h2>Groups changing fastest</h2><p>Selected road users and ages</p></div>
-          </div>
-          <span class="chart-period">2011 → 2021</span>
-        </header>
-        <div id="chart-group" class="chart-placeholder" role="img" aria-label="Interactive radial bar chart of selected group percentage changes">
-          <span class="placeholder-icon" aria-hidden="true">≋</span>
-          <strong>D3 radial bar chart</strong>
-          <small>Percentage change by selected group</small>
-        </div>
-        <p class="chart-insight"><b>Insight</b> Ages 65–74 and pedal cyclists recorded the largest selected increases.</p>
-      </article>
+.summary-strip {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: minmax(360px, 1.55fr) repeat(3, minmax(165px, .72fr));
+  gap: 9px;
+}
 
-      <article class="chart-card" id="states">
-        <header class="chart-header">
-          <div>
-            <span class="chart-number">04</span>
-            <div><h2>States and territories</h2><p>Absolute hospitalisation counts</p></div>
-          </div>
-          <span class="chart-period">2021</span>
-        </header>
-        <div id="chart-state" class="chart-placeholder" role="img" aria-label="Interactive packed circle chart comparing state and territory counts">
-          <span class="placeholder-icon" aria-hidden="true">▰</span>
-          <strong>D3 packed circles</strong>
-          <small>Jurisdiction comparison</small>
-        </div>
-        <p class="chart-insight"><b>Read carefully</b> Raw counts reflect population size as well as injury burden.</p>
-      </article>
-    </section>
-  </main>
-  <div class="chart-tooltip" id="chart-tooltip" role="status" aria-live="polite"></div>
-  <script src="https://d3js.org/d3.v7.min.js"></script>
-  <script src="js/dashboard.js"></script>
-</body>
-</html>
+.story-summary, .kpi {
+  min-width: 0;
+  border: 1px solid var(--rule);
+  border-radius: 13px;
+  background: var(--panel);
+}
+.story-summary { position: relative; padding: 7px 15px; overflow: hidden; }
+.story-summary::after { content: ""; position: absolute; top: -60px; right: -35px; width: 155px; height: 155px; border: 1px solid var(--mint); border-radius: 50%; opacity: .22; }
+.eyebrow { margin: 0 0 2px; color: var(--coral); font-size: 8px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+.story-summary > p:nth-child(2) { max-width: 650px; min-height: 28px; margin: 0; font: 600 clamp(10px, .98vw, 13px)/1.12 var(--font-display); }
+.data-warning { display: inline-block; margin-top: 5px; color: var(--muted); font-size: 9px; font-weight: 600; }
+.story-controls { position: relative; z-index: 1; display: flex; align-items: center; gap: 4px; margin-top: 4px; }
+.story-button, .story-reset {
+  min-height: 18px;
+  padding: 2px 7px;
+  color: var(--muted);
+  background: var(--sage-100);
+  border: 0;
+  border-radius: 999px;
+  font: 700 8px var(--font-body);
+  cursor: pointer;
+}
+.story-button:hover, .story-button.is-active { color: var(--white); background: var(--pine-800); }
+.story-reset { margin-left: auto; color: var(--pine-950); background: #ffd5ce; }
+.story-reset:hover { color: var(--white); background: var(--coral); }
+
+.kpi { position: relative; display: flex; flex-direction: column; justify-content: center; padding: 10px 14px; overflow: hidden; color: var(--white); background: var(--pine-900); border-color: transparent; }
+.kpi::after { content: ""; position: absolute; right: -28px; bottom: -46px; width: 100px; height: 100px; border: 1px solid currentColor; border-radius: 50%; opacity: .16; }
+.kpi span { color: #bcd1ca; font-size: 9px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; }
+.kpi strong { margin-top: 3px; font: 800 clamp(24px, 2.3vw, 36px)/1 var(--font-display); letter-spacing: -.04em; }
+.kpi-mint strong { color: var(--mint); }
+.kpi-coral strong { color: var(--coral); }
+.kpi-blue strong { color: var(--sky); }
+
+.chart-grid {
+  min-height: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.chart-card {
+  min-width: 0;
+  min-height: 0;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  gap: 7px;
+  padding: 10px 12px 8px;
+  overflow: hidden;
+  background: var(--panel);
+  border: 1px solid var(--rule);
+  border-radius: 14px;
+  box-shadow: 0 8px 22px rgba(17, 52, 47, .06);
+  transition: opacity .22s ease, border-color .22s ease, box-shadow .22s ease;
+}
+.chart-card.story-focus { border-color: var(--coral); box-shadow: 0 0 0 2px rgba(255, 106, 85, .13), 0 10px 25px rgba(17, 52, 47, .09); }
+.chart-card.story-muted { opacity: .52; }
+
+.chart-header { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 35px; }
+.chart-header > div { min-width: 0; display: flex; align-items: center; gap: 9px; }
+.chart-header h2 { margin: 0; font: 700 clamp(14px, 1.25vw, 18px)/1.05 var(--font-display); letter-spacing: -.02em; }
+.chart-header p { margin: 2px 0 0; color: var(--muted); font-size: 9px; }
+.chart-number { display: grid; width: 31px; height: 31px; place-items: center; flex: none; color: var(--pine-950); background: var(--mint); border-radius: 9px; font: 800 10px var(--font-display); }
+.chart-period { flex: none; padding: 4px 8px; color: var(--muted); background: var(--sage-100); border-radius: 999px; font-size: 9px; font-weight: 700; }
+
+.chart-placeholder {
+  position: relative;
+  min-height: 0;
+  display: grid;
+  place-content: center;
+  padding: 8px;
+  overflow: hidden;
+  text-align: center;
+  border: 1px dashed #abc1ba;
+  border-radius: 10px;
+  background:
+    linear-gradient(rgba(207, 221, 216, .38) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(207, 221, 216, .38) 1px, transparent 1px),
+    #f4f8f6;
+  background-size: 34px 34px;
+}
+.chart-placeholder::after { content: ""; position: absolute; left: 12%; right: 12%; bottom: 22%; height: 2px; background: linear-gradient(90deg, transparent, var(--mint), var(--coral), transparent); transform: rotate(-3deg); opacity: .55; }
+.chart-placeholder.chart-ready { display: block; padding: 0; border-style: solid; border-color: #dce7e3; background: #f8fbfa; }
+.chart-placeholder.chart-ready::after { display: none; }
+.chart-placeholder.chart-ready svg { display: block; width: 100%; height: 100%; overflow: visible; }
+.placeholder-icon { position: relative; z-index: 1; display: grid; width: 38px; height: 38px; place-items: center; margin: 0 auto 6px; color: var(--white); background: var(--pine-800); border-radius: 10px; font-size: 20px; }
+.chart-placeholder strong { position: relative; z-index: 1; font: 700 13px var(--font-display); }
+.chart-placeholder small { position: relative; z-index: 1; margin-top: 2px; color: var(--muted); font-size: 9px; }
+.chart-insight { min-width: 0; margin: 0; overflow: hidden; color: var(--muted); font-size: 9px; line-height: 1.2; text-overflow: ellipsis; white-space: nowrap; }
+.chart-insight b { margin-right: 5px; color: var(--coral); font-size: 8px; letter-spacing: .08em; text-transform: uppercase; }
+
+.axis text, .guide-label, .legend-label, .chart-label { fill: var(--muted); font-family: var(--font-body); font-size: 10px; }
+.axis path, .axis line { stroke: #b9cbc5; }
+.grid line { stroke: #dce7e3; stroke-dasharray: 2 3; }
+.grid path { display: none; }
+.line-muted { fill: none; stroke: #c8d5d1; stroke-width: 2.1; }
+.line-selected { fill: none; stroke: var(--pine-800); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+.line-first { fill: none; stroke: var(--coral); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+.line-national-index { fill: none; stroke: var(--sky); stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+.data-point { stroke: var(--panel); stroke-width: 1.5; cursor: pointer; }
+.selection-window { fill: var(--mint); opacity: .09; }
+.annotation-line { stroke: var(--coral); stroke-width: 1; stroke-dasharray: 3 3; }
+.annotation-text { fill: var(--coral); font: 700 9px var(--font-body); }
+.brush .selection { fill: var(--mint); fill-opacity: .32; stroke: var(--pine-800); }
+.brush .handle { fill: var(--coral); }
+.brush .overlay { cursor: crosshair; }
+.radial-arc, .radial-legend-row, .state-node { cursor: pointer; }
+.radial-arc, .state-node circle { transition: opacity .18s ease, filter .18s ease; }
+.radial-arc.is-muted, .radial-legend-row.is-muted, .state-node.is-muted { opacity: .2; }
+.radial-arc.is-selected { filter: drop-shadow(0 0 4px rgba(255, 106, 85, .55)); }
+.radial-legend-row.is-selected text { fill: var(--ink); font-weight: 700; }
+.state-node.is-selected circle { stroke: var(--coral); stroke-width: 4; filter: drop-shadow(0 3px 4px rgba(17, 52, 47, .2)); }
+
+.chart-tooltip {
+  position: fixed;
+  z-index: 100;
+  max-width: 230px;
+  padding: 8px 10px;
+  pointer-events: none;
+  color: var(--white);
+  background: rgba(9, 31, 28, .96);
+  border: 1px solid rgba(255, 255, 255, .16);
+  border-radius: 8px;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, .2);
+  font-size: 11px;
+  line-height: 1.35;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity .12s ease, transform .12s ease;
+}
+.chart-tooltip.is-visible { opacity: 1; transform: translateY(0); }
+.chart-tooltip strong { color: var(--mint); }
+
+@media (min-width: 1650px) and (min-height: 900px) {
+  .dashboard-header { height: 88px; padding-inline: 30px; }
+  .dashboard { height: calc(100vh - 88px); grid-template-rows: 104px minmax(0, 1fr); gap: 14px; padding: 14px 16px 16px; }
+  .summary-strip, .chart-grid { gap: 14px; }
+  .story-summary, .kpi { border-radius: 16px; }
+  .story-summary { padding: 15px 18px; }
+  .story-summary > p:nth-child(2) { min-height: 34px; font-size: 15px; }
+  .story-controls { gap: 6px; margin-top: 6px; }
+  .story-button, .story-reset { min-height: 22px; padding-inline: 10px; font-size: 9px; }
+  .data-warning { margin-top: 8px; font-size: 11px; }
+  .kpi { padding-inline: 18px; }
+  .kpi span { font-size: 11px; }
+  .chart-card { gap: 10px; padding: 14px 16px 11px; border-radius: 17px; }
+  .chart-header { min-height: 42px; }
+  .chart-number { width: 37px; height: 37px; }
+  .chart-header p, .chart-period, .chart-insight { font-size: 11px; }
+  .chart-insight b { font-size: 10px; }
+  .placeholder-icon { width: 48px; height: 48px; font-size: 24px; }
+  .chart-placeholder strong { font-size: 15px; }
+  .chart-placeholder small { font-size: 11px; }
+}
+
+@media (max-width: 1050px) {
+  .dashboard-header { grid-template-columns: minmax(230px, 1fr) 1.4fr auto; gap: 12px; padding-inline: 14px; }
+  .header-meta .group-label { display: none; }
+  .summary-strip { grid-template-columns: minmax(300px, 1.4fr) repeat(3, minmax(135px, .68fr)); }
+}
+
+@media (max-height: 650px) {
+  .dashboard-header { height: 62px; border-bottom-width: 3px; }
+  .dashboard { height: calc(100vh - 62px); grid-template-rows: 70px minmax(0, 1fr); gap: 7px; padding: 7px 9px 9px; }
+  .summary-strip, .chart-grid { gap: 7px; }
+  .brand small, .header-title span, .group-label, .data-warning { display: none; }
+  .story-summary { padding-block: 8px; }
+  .story-summary > p:nth-child(2) { min-height: 20px; font-size: 10px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .story-controls { margin-top: 3px; }
+  .story-button, .story-reset { min-height: 16px; padding: 1px 5px; font-size: 7px; }
+  .kpi { padding-block: 6px; }
+  .chart-card { gap: 4px; padding: 7px 9px 5px; }
+  .chart-header { min-height: 29px; }
+  .chart-number { width: 26px; height: 26px; }
+  .chart-header p { display: none; }
+  .placeholder-icon { width: 30px; height: 30px; margin-bottom: 3px; font-size: 17px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { scroll-behavior: auto !important; }
+}
