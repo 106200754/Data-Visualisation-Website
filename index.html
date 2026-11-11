@@ -3,93 +3,137 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Hospitalised injuries from road crashes | Group 7</title>
+  <meta name="description" content="A single-screen dashboard about hospitalised road-crash injuries in Australia from 2011 to 2021.">
+  <title>Beyond Road Deaths | Group 18</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/dashboard.css">
-  <script src="js/theme.js"></script>
 </head>
-<body class="dashboard-page">
-  <header class="site-nav">
-    <div class="nav-left">
-      <a class="brand" href="index.html"><span class="dots" aria-hidden="true"><i></i><i></i></span>Group 18</a>
-      <span class="nav-badge">2011–21</span>
+<body>
+  <!--
+    GenAI acknowledgement:
+    Generative AI was used to review the single-screen dashboard structure,
+    accessibility and responsive CSS. Group 18 reviewed and adapted the
+    suggestions and remains responsible for the final design and code.
+  -->
+
+  <header class="dashboard-header">
+    <a class="brand" href="#" aria-label="Beyond Road Deaths dashboard">
+      <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
+      <span>
+        <strong>Beyond Road Deaths</strong>
+        <small>Hospitalised road-crash injuries</small>
+      </span>
+    </a>
+
+    <div class="header-title">
+      <span>Australia</span>
+      <h1>The injuries behind the road toll</h1>
     </div>
-    <div class="right">
-      <a class="link" href="about.html">About</a>
-      <a class="link active" href="index.html" aria-current="page">Dashboard</a>
-      <label class="select-pill">Theme:
-        <select id="theme-select" class="theme-select" aria-label="Theme">
-          <option value="light">Light</option>
-          <option value="dark">Dark</option>
-        </select>
-      </label>
+
+    <div class="header-meta">
+      <span class="year-range">2011—2021</span>
+      <span class="group-label">Group 18 · COS30045</span>
     </div>
   </header>
 
-  <div class="shell"><div class="content">
-    <section class="dashboard-intro">
-      <p class="intro-eyebrow">AUSTRALIAN ROAD SAFETY INSIGHTS</p>
-      <header class="header">
-        <h1 class="header-title">Hospitalised injuries from road crashes <span class="info-icon" title="Source: BITRE, using AIHW National Hospital Morbidity Database data.">i</span></h1>
-        <p class="header-year" id="header-year"></p>
-      </header>
-      <p class="intro-description">Explore national trends, First Nations hospitalisations, changes across selected groups, and state-level comparisons from 2011 to 2021.</p>
-      <span class="source-pill">Data visualisations · Australia · 2011–2021</span>
-    </section>
-
-    <h2 class="section-heading">At-a-glance overview</h2>
-    <section class="kpis">
-      <div class="kpi kpi-national">
-        <p class="kpi-label" id="kpi-national-label">Hospitalised injuries</p>
-        <p class="kpi-value" id="kpi-national"></p>
-        <p class="kpi-detail">National hospitalised road crash injuries</p>
+  <main class="dashboard" aria-label="Hospitalised road-crash injuries dashboard">
+    <section class="summary-strip" aria-label="Dashboard overview">
+      <div class="story-summary">
+        <p class="eyebrow" id="story-title">Story 1 of 4 · National rise</p>
+        <p id="story-message" aria-live="polite">Hospitalisations increased overall from 2011 to 2021, despite a temporary decline in 2020.</p>
+        <div class="story-controls" role="group" aria-label="Choose a data story">
+          <button class="story-button is-active" type="button" data-story="rise">1 Rise</button>
+          <button class="story-button" type="button" data-story="interruption">2 2020</button>
+          <button class="story-button" type="button" data-story="first-nations">3 First Nations</button>
+          <button class="story-button" type="button" data-story="groups">4 Groups</button>
+          <button class="story-reset" type="button" id="reset-dashboard">Reset</button>
+        </div>
       </div>
-      <div class="kpi kpi-firstnations">
-        <p class="kpi-label" id="kpi-firstnations-label">First Nations hospitalised injuries</p>
-        <p class="kpi-value" id="kpi-firstnations"></p>
-        <p class="kpi-detail">First Nations hospitalisations in the selected year</p>
+
+      <div class="kpi kpi-mint">
+        <span id="kpi-national-label">Hospitalisations · 2021</span>
+        <strong id="kpi-national-value">39,505</strong>
       </div>
-    </section>
-
-    <h2 class="section-heading">Explore the data</h2>
-    <main class="grid">
-      <section class="card card-national" id="national">
-        <h2 class="card-title">1. Hospitalised injuries, 2011–2021 <span class="info-icon small" title="All hospitalised road-crash injuries per calendar year.">i</span></h2>
-        <div id="chart-national" class="chart"></div>
-      </section>
-      <section class="card card-firstnations" id="first-nations">
-        <h2 class="card-title">2. First Nations hospitalised injuries, 2011–2021 <span class="info-icon small" title="Hospitalisations of First Nations peoples per calendar year.">i</span></h2>
-        <div id="chart-firstnations" class="chart"></div>
-      </section>
-      <section class="card card-group" id="group">
-        <h2 class="card-title">3. Change by selected group, 2011–2021 <span class="info-icon small" title="Percentage change between first and last year.">i</span></h2>
-        <div id="chart-group" class="chart"></div>
-      </section>
-      <section class="card card-state" id="state">
-        <h2 class="card-title">4. By state and territory, 2021 <span class="info-icon small" title="Absolute counts, not adjusted for population.">i</span></h2>
-        <div id="chart-state" class="chart"></div>
-      </section>
-    </main>
-
-    <section class="insights">
-      <h2>💡 What this data tells us</h2>
-      <div class="insight-grid">
-        <div class="insight"><strong>National trend</strong><p>Use the national chart to compare annual hospitalisation counts over the 2011–2021 period.</p></div>
-        <div class="insight"><strong>First Nations</strong><p>Compare the First Nations trend over time, while considering population and reporting context.</p></div>
-        <div class="insight"><strong>Selected groups</strong><p>Percentage changes help highlight how hospitalisation counts shifted across selected groups.</p></div>
-        <div class="insight"><strong>States and territories</strong><p>State-level counts are not population-adjusted and should not be interpreted as risk rankings.</p></div>
+      <div class="kpi kpi-coral">
+        <span id="kpi-change-label">National change · 2011–21</span>
+        <strong id="kpi-change-value">+16.1%</strong>
+      </div>
+      <div class="kpi kpi-blue">
+        <span id="kpi-first-label">First Nations · 2021</span>
+        <strong id="kpi-first-value">2,220</strong>
       </div>
     </section>
-    <p class="note"><strong>Reading these numbers:</strong> counts are absolute, not risk, and are not adjusted for population size. Values marked n.p. in the source are suppressed for confidentiality. Changes shown do not prove causes. See <a href="about.html#data">About the data</a>.</p>
-  </div></div>
-  <footer class="site-footer">Group 7 · Australian road safety data visualisation · 2011–2021</footer>
-  <div id="tooltip" class="tooltip" role="tooltip" aria-hidden="true"></div>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
-  <script src="js/utils.js"></script>
-  <script src="js/charts.js"></script>
-  <script src="js/main.js"></script>
+
+    <section class="chart-grid" aria-label="Four views of the data">
+      <article class="chart-card" id="national">
+        <header class="chart-header">
+          <div>
+            <span class="chart-number">01</span>
+            <div><h2>National trend</h2><p>Annual hospitalisations</p></div>
+          </div>
+          <span class="chart-period">2011–2021</span>
+        </header>
+        <div id="chart-national" class="chart-placeholder" role="img" aria-label="Interactive national hospitalisation trend line chart with a draggable year brush">
+          <span class="placeholder-icon" aria-hidden="true">↗</span>
+          <strong>D3 line chart</strong>
+          <small>National hospitalisations over time</small>
+        </div>
+        <p class="chart-insight"><b>Insight</b> Overall hospitalisations rose, with a visible interruption in 2020.</p>
+      </article>
+
+      <article class="chart-card" id="first-nations">
+        <header class="chart-header">
+          <div>
+            <span class="chart-number">02</span>
+            <div><h2>Whose burden grew faster?</h2><p>Growth index · 2011 = 100</p></div>
+          </div>
+          <span class="chart-period">2011–2021</span>
+        </header>
+        <div id="chart-firstnations" class="chart-placeholder" role="img" aria-label="Indexed comparison of national and First Nations hospitalisations">
+          <span class="placeholder-icon" aria-hidden="true">⌁</span>
+          <strong>D3 indexed comparison</strong>
+          <small>National and First Nations growth</small>
+        </div>
+        <p class="chart-insight"><b>Insight</b> First Nations counts grew much faster than the national total.</p>
+      </article>
+
+      <article class="chart-card" id="groups">
+        <header class="chart-header">
+          <div>
+            <span class="chart-number">03</span>
+            <div><h2>Groups changing fastest</h2><p>Selected road users and ages</p></div>
+          </div>
+          <span class="chart-period">2011 → 2021</span>
+        </header>
+        <div id="chart-group" class="chart-placeholder" role="img" aria-label="Interactive radial bar chart of selected group percentage changes">
+          <span class="placeholder-icon" aria-hidden="true">≋</span>
+          <strong>D3 radial bar chart</strong>
+          <small>Percentage change by selected group</small>
+        </div>
+        <p class="chart-insight"><b>Insight</b> Ages 65–74 and pedal cyclists recorded the largest selected increases.</p>
+      </article>
+
+      <article class="chart-card" id="states">
+        <header class="chart-header">
+          <div>
+            <span class="chart-number">04</span>
+            <div><h2>States and territories</h2><p>Absolute hospitalisation counts</p></div>
+          </div>
+          <span class="chart-period">2021</span>
+        </header>
+        <div id="chart-state" class="chart-placeholder" role="img" aria-label="Interactive packed circle chart comparing state and territory counts">
+          <span class="placeholder-icon" aria-hidden="true">▰</span>
+          <strong>D3 packed circles</strong>
+          <small>Jurisdiction comparison</small>
+        </div>
+        <p class="chart-insight"><b>Read carefully</b> Raw counts reflect population size as well as injury burden.</p>
+      </article>
+    </section>
+  </main>
+  <div class="chart-tooltip" id="chart-tooltip" role="status" aria-live="polite"></div>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script src="js/dashboard.js"></script>
 </body>
 </html>
